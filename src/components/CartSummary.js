@@ -29,11 +29,10 @@ const GET_CART_QUERY = gql`
   }
 `
 
-const CartSummary = ({ cartId, ...props }) => {
+const CartSummary = ({ cartId: id }) => {
   const { loading, error, data } = useQuery(GET_CART_QUERY, {
     variables: {
-      id: cartId,
-      ...props,
+      id,
     },
   })
 

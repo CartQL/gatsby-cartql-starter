@@ -28,10 +28,10 @@ const REMOVE_ITEM_MUTATION = gql`
   }
 `
 
-const RemoveFromCart = ({ cartId, ...props }) => {
+const RemoveFromCart = input => {
   const [removeItem] = useMutation(REMOVE_ITEM_MUTATION, {
     variables: {
-      input: { cartId, ...props },
+      input,
     },
   })
 

@@ -2,6 +2,7 @@ import React from "react"
 import { gql } from "apollo-boost"
 import { useQuery } from "@apollo/react-hooks"
 
+import useCartId from "../hooks/useCartId"
 import CartItem from "./CartItem"
 
 const GET_CART_QUERY = gql`
@@ -30,10 +31,11 @@ const GET_CART_QUERY = gql`
   }
 `
 
-const CartItemList = ({ cartId }) => {
+const CartItemList = ({ cartId: id }) => {
+  const cartId = useCartId()
   const { loading, error, data } = useQuery(GET_CART_QUERY, {
     variables: {
-      id: cartId,
+      id,
     },
   })
 
@@ -44,7 +46,9 @@ const CartItemList = ({ cartId }) => {
 
   return (
     <div>
-      {data.cart.items.map(CartItem)}
+      {data.cart.items.map(item => (
+        <CartItem key={item.id} cartId={cartId} {...item} />
+      ))}
 
       <div>
         Sub total: <strong>{data.cart.subTotal.formatted}</strong>

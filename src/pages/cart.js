@@ -1,13 +1,18 @@
 import React from "react"
 
+import useCartId from "../hooks/useCartId"
 import CartItemList from "../components/CartItemList"
 
-const CartPage = () => (
-  <React.Fragment>
-    <h1>Cart</h1>
+const CartPage = () => {
+  const cartId = useCartId()
 
-    <CartItemList cartId="testing" />
-  </React.Fragment>
-)
+  return (
+    <React.Fragment>
+      <h1>Cart</h1>
+
+      <CartItemList cartId={cartId} />
+    </React.Fragment>
+  )
+}
 
 export default CartPage

@@ -2,20 +2,25 @@ import React from "react"
 import { Link } from "gatsby"
 
 import CartSummary from "./CartSummary"
+import useCartId from "../hooks/useCartId"
 
-const Layout = ({ children }) => (
-  <React.Fragment>
-    <ul>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      <li>
-        <CartSummary cartId="testing" />
-      </li>
-    </ul>
+const Layout = ({ children }) => {
+  const cartId = useCartId()
 
-    <main>{children}</main>
-  </React.Fragment>
-)
+  return (
+    <React.Fragment>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <CartSummary cartId={cartId} />
+        </li>
+      </ul>
+
+      <main>{children}</main>
+    </React.Fragment>
+  )
+}
 
 export default Layout

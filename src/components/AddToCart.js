@@ -28,10 +28,10 @@ const ADD_ITEM_MUTATION = gql`
   }
 `
 
-const AddToCart = ({ cartId, ...props }) => {
+const AddToCart = input => {
   const [addItem] = useMutation(ADD_ITEM_MUTATION, {
     variables: {
-      input: { cartId, ...props },
+      input,
     },
   })
 

@@ -7,9 +7,7 @@ const HomePage = ({
   data: {
     products: { nodes: products },
   },
-}) => {
-  return <ProductGrid products={products} />
-}
+}) => <ProductGrid products={products} />
 
 export const pageQuery = graphql`
   query allProductsQuery {

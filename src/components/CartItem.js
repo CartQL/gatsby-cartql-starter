@@ -4,6 +4,7 @@ import Img from "gatsby-image"
 import RemoveFromCart from "./RemoveFromCart"
 
 const CartItem = ({
+  cartId,
   id,
   name,
   description,
@@ -15,7 +16,7 @@ const CartItem = ({
   const [image] = images
 
   return (
-    <div key={id}>
+    <div>
       {image && (
         <Img
           fluid={JSON.parse(image).childImageSharp.fluid}
@@ -33,7 +34,7 @@ const CartItem = ({
         {quantity} x {unitTotal.formatted}: {lineTotal.formatted}
       </p>
 
-      <RemoveFromCart cartId="testing" id={id} />
+      <RemoveFromCart cartId={cartId} id={id} />
     </div>
   )
 }

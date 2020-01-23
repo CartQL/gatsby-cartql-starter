@@ -2,9 +2,11 @@ import React, { useState } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 
+import useCartId from "../hooks/useCartId"
 import AddToCart from "../components/AddToCart"
 
 const ProductPage = ({ data: { product } }) => {
+  const cartId = useCartId()
   const { name, variants } = product
   const [firstVariant] = variants
   const [activeVariantSlug, setActiveVariantSlug] = useState(firstVariant.slug)
@@ -42,7 +44,7 @@ const ProductPage = ({ data: { product } }) => {
       )}
 
       <AddToCart
-        cartId="testing"
+        cartId={cartId}
         id={activeVariant.id}
         name={name}
         price={activeVariant.price}
