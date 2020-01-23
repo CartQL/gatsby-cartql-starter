@@ -7,8 +7,8 @@ const CartProvider = ({ id, ...props }) => {
   const [cartId, saveCartId] = useLocalStorage("cartql-cart-id", id)
 
   useEffect(() => {
-    !cartId && saveCartId(id)
-  }, [id, saveCartId])
+    saveCartId(cartId)
+  }, [cartId, saveCartId])
 
   return <CartContext.Provider value={cartId} {...props} />
 }
