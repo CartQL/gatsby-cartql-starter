@@ -1,6 +1,7 @@
 import React from "react"
 import Img from "gatsby-image"
 
+import UpdateQuantity from "./UpdateQuantity"
 import RemoveFromCart from "./RemoveFromCart"
 
 const CartItem = ({
@@ -31,7 +32,8 @@ const CartItem = ({
         <em>{description}</em>
       </p>
       <p>
-        {quantity} x {unitTotal.formatted}: {lineTotal.formatted}
+        <UpdateQuantity initialValue={quantity} cartId={cartId} id={id} /> x{" "}
+        {unitTotal.formatted}: {lineTotal.formatted}
       </p>
 
       <RemoveFromCart cartId={cartId} id={id} />

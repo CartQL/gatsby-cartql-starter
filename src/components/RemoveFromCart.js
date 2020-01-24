@@ -29,13 +29,17 @@ const REMOVE_ITEM_MUTATION = gql`
 `
 
 const RemoveFromCart = input => {
-  const [removeItem] = useMutation(REMOVE_ITEM_MUTATION, {
+  const [removeItem, { loading }] = useMutation(REMOVE_ITEM_MUTATION, {
     variables: {
       input,
     },
   })
 
-  return <button onClick={removeItem}>&times; Remove item</button>
+  return (
+    <button onClick={removeItem} disabled={loading}>
+      &times; Remove item
+    </button>
+  )
 }
 
 export default RemoveFromCart

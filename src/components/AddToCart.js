@@ -29,13 +29,17 @@ const ADD_ITEM_MUTATION = gql`
 `
 
 const AddToCart = input => {
-  const [addItem] = useMutation(ADD_ITEM_MUTATION, {
+  const [addItem, { loading }] = useMutation(ADD_ITEM_MUTATION, {
     variables: {
       input,
     },
   })
 
-  return <button onClick={addItem}>Add to Cart</button>
+  return (
+    <button onClick={addItem} disabled={loading}>
+      Add to Cart
+    </button>
+  )
 }
 
 export default AddToCart
