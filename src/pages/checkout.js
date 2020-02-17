@@ -1,9 +1,10 @@
 import React from "react"
 import { gql } from "apollo-boost"
 import { useMutation } from "@apollo/react-hooks"
-import { useForm } from "react-hook-form"
+import { useForm, FormContext } from "react-hook-form"
 
 import useCartId from "../hooks/useCartId"
+import AddressFields from "../components/AddressFields"
 
 const CHECKOUT_MUTATION = gql`
   mutation checkout($input: CheckoutInput!) {
@@ -40,9 +41,17 @@ const EMPTY_CART_MUTATION = gql`
   }
 `
 
+const defaultValues = {
+  useSeparateBilling: false,
+  shipping: {},
+  billing: {},
+}
+
 function CheckoutPage() {
   const cartId = useCartId()
-  const { register, handleSubmit, errors } = useForm()
+  const { handleSubmit, ...methods } = useForm({ defaultValues })
+  const { register } = methods
+
   const [checkout, { loading }] = useMutation(CHECKOUT_MUTATION)
   const [emptyCart] = useMutation(EMPTY_CART_MUTATION, {
     variables: {
@@ -50,20 +59,12 @@ function CheckoutPage() {
     },
   })
 
-  const onSubmit = async values => {
-    console.log({ values })
+  const onSubmit = async ({ useSeparateBilling, ...data }) => {
+    console.log({ data })
     try {
       const input = {
         cartId,
-        email: values.email,
-        shipping: {
-          name: "Jamie",
-          line1: "1st line",
-          city: "City name",
-          state: "State name",
-          postalCode: "NNN 123",
-          country: "GB",
-        },
+        ...data,
       }
 
       const {
@@ -79,20 +80,28 @@ function CheckoutPage() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input
-        type="email"
-        name="email"
-        ref={register({ required: true })}
-        placeholder="Email"
-      />
-      {errors.email && "Email is required."}
-      <br />
+    <FormContext {...methods}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <AddressFields type="shipping" />
 
-      <button type="submit" disabled={loading}>
-        Checkout
-      </button>
-    </form>
+        <AddressFields type="billing" />
+
+        <fieldset>
+          <legend>You</legend>
+
+          <input
+            type="email"
+            name="email"
+            ref={register({ required: true })}
+            placeholder="Email"
+          />
+        </fieldset>
+
+        <button type="submit" disabled={loading}>
+          Checkout
+        </button>
+      </form>
+    </FormContext>
   )
 }
 
