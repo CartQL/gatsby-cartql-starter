@@ -91,7 +91,11 @@ function CheckoutPage() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <AddressFields type="shipping" handleSubmit={goToBilling} />
         <AddressFields type="billing" handleSubmit={goToPayment} />
-        <PaymentForm loading={loading} />
+        <PaymentForm />
+
+        <button type="submit" disabled={loading}>
+          Pay
+        </button>
       </form>
     </FormContext>
   )

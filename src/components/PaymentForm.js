@@ -1,12 +1,8 @@
 import React from "react"
 
-const PaymentForm = ({ loading }) => (
+const PaymentForm = ({}) => (
   <fieldset>
     <legend>Payment</legend>
-
-    <button type="submit" disabled={loading}>
-      Pay
-    </button>
   </fieldset>
 )
 
