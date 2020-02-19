@@ -1,22 +1,10 @@
 import React from "react"
 import { useFormContext } from "react-hook-form"
 
-const AddressFields = ({ type, isEditing = false }) => {
-  const { errors, register, watch } = useFormContext()
-  const { useSeparateBilling } = watch()
+const AddressFields = ({ type, handleSubmit }) => {
+  const { errors, register } = useFormContext()
 
-  if (type === "billing" && !useSeparateBilling)
-    return (
-      <label htmlFor="useSeparateBilling">
-        <input
-          type="checkbox"
-          id="useSeparateBilling"
-          name="useSeparateBilling"
-          ref={register}
-        />{" "}
-        Use separate billing
-      </label>
-    )
+  const isShipping = type === "shipping"
 
   return (
     <fieldset>
@@ -30,6 +18,19 @@ const AddressFields = ({ type, isEditing = false }) => {
         />
         {errors[type] && errors[type].name && "Name is required."}
       </div>
+
+      {isShipping && (
+        <div>
+          <input
+            type="email"
+            name="email"
+            ref={register({ required: true })}
+            placeholder="Email"
+          />
+          {errors[type] && errors[type].email && "Email is required."}
+        </div>
+      )}
+
       <div>
         <input
           name={`${type}.line1`}
@@ -72,6 +73,26 @@ const AddressFields = ({ type, isEditing = false }) => {
           placeholder="Country"
         />
         {errors[type] && errors[type].country && "Country is required."}
+      </div>
+
+      {isShipping && (
+        <div>
+          <label htmlFor="useSeparateBilling">
+            <input
+              type="checkbox"
+              id="useSeparateBilling"
+              name="useSeparateBilling"
+              ref={register}
+            />{" "}
+            Use different billing address
+          </label>
+        </div>
+      )}
+
+      <div>
+        <button type="button" onClick={handleSubmit}>
+          Continue &rarr;
+        </button>
       </div>
     </fieldset>
   )

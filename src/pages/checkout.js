@@ -5,6 +5,7 @@ import { useForm, FormContext } from "react-hook-form"
 
 import useCartId from "../hooks/useCartId"
 import AddressFields from "../components/AddressFields"
+import PaymentForm from "../components/PaymentForm"
 
 const CHECKOUT_MUTATION = gql`
   mutation checkout($input: CheckoutInput!) {
@@ -42,6 +43,7 @@ const EMPTY_CART_MUTATION = gql`
 `
 
 const defaultValues = {
+  currentStep: "shipping",
   useSeparateBilling: false,
   shipping: {},
   billing: {},
@@ -50,7 +52,8 @@ const defaultValues = {
 function CheckoutPage() {
   const cartId = useCartId()
   const { handleSubmit, ...methods } = useForm({ defaultValues })
-  const { register } = methods
+  const { watch, setValue } = methods
+  const { currentStep, useSeparateBilling } = watch()
 
   const [checkout, { loading }] = useMutation(CHECKOUT_MUTATION)
   const [emptyCart] = useMutation(EMPTY_CART_MUTATION, {
@@ -60,7 +63,6 @@ function CheckoutPage() {
   })
 
   const onSubmit = async ({ useSeparateBilling, ...data }) => {
-    console.log({ data })
     try {
       const input = {
         cartId,
@@ -79,27 +81,17 @@ function CheckoutPage() {
     }
   }
 
+  const goToBilling = () =>
+    setValue("currentStep", useSeparateBilling ? "billing" : "payment")
+
+  const goToPayment = () => setValue("currentStep", "payment")
+
   return (
     <FormContext {...methods}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <AddressFields type="shipping" />
-
-        <AddressFields type="billing" />
-
-        <fieldset>
-          <legend>You</legend>
-
-          <input
-            type="email"
-            name="email"
-            ref={register({ required: true })}
-            placeholder="Email"
-          />
-        </fieldset>
-
-        <button type="submit" disabled={loading}>
-          Checkout
-        </button>
+        <AddressFields type="shipping" handleSubmit={goToBilling} />
+        <AddressFields type="billing" handleSubmit={goToPayment} />
+        <PaymentForm loading={loading} />
       </form>
     </FormContext>
   )
