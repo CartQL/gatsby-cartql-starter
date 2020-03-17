@@ -5,12 +5,14 @@ import Img from "gatsby-image"
 const Product = ({ id, slug, image, name }) => (
   <article key={id}>
     <Link to={`/products/${slug}`}>
-      <Img
-        style={{ width: 250 }}
-        fluid={image.childImageSharp.fluid}
-        alt={name}
-        title={name}
-      />
+      {image && (
+        <Img
+          style={{ width: 250 }}
+          fluid={image.childImageSharp.fluid}
+          alt={name}
+          title={name}
+        />
+      )}
 
       <h4>{name}</h4>
     </Link>

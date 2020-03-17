@@ -11,12 +11,12 @@ const HomePage = ({
 
 export const pageQuery = graphql`
   query allProductsQuery {
-    products: allPrintfulProduct {
+    products: allProductsYaml {
       nodes {
         id
         name
         slug
-        image: productImage {
+        image {
           childImageSharp {
             fluid(maxWidth: 560) {
               ...GatsbyImageSharpFluid
