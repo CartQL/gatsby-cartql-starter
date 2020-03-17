@@ -1,7 +1,7 @@
 name: Full Logo Tee
 slug: full-logo-tee
 description: Represent CartQL with this full logo tee!
-price: 2000
+image: ./images/full-logo-tee-purple.png
 variants:
   - id: purple-xs
     name: Purple / XS

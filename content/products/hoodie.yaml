@@ -1,6 +1,7 @@
 name: Hoodie
 slug: hoodie
 description: Represent CartQL with this emblem logo hoodie!
+image: ./images/hoodie-dark-heather.png
 variants:
   - id: dark-heather-xs
     name: Dark Heather / XS

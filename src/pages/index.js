@@ -16,13 +16,13 @@ export const pageQuery = graphql`
         id
         name
         slug
-        # image: productImage {
-        #   childImageSharp {
-        #     fluid(maxWidth: 560) {
-        #       ...GatsbyImageSharpFluid
-        #     }
-        #   }
-        # }
+        image {
+          childImageSharp {
+            fluid(maxWidth: 560) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
     }
   }

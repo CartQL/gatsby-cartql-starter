@@ -1,6 +1,7 @@
 name: Emblem Logo Tee
 slug: emblem-logo-tee
 description: Represent CartQL with this emblem only logo tee!
+image: ./images/emblem-logo-tee-charcoal.png
 variants:
   - id: charcoal-xs
     name: Charcoal / XS
