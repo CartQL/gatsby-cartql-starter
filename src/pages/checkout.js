@@ -53,7 +53,7 @@ function CheckoutPage() {
   const cartId = useCartId()
   const { handleSubmit, ...methods } = useForm({ defaultValues })
   const { watch, setValue } = methods
-  const { currentStep, useSeparateBilling } = watch()
+  const { useSeparateBilling } = watch()
 
   const [checkout, { loading }] = useMutation(CHECKOUT_MUTATION)
   const [emptyCart] = useMutation(EMPTY_CART_MUTATION, {
@@ -90,11 +90,12 @@ function CheckoutPage() {
     <FormContext {...methods}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <AddressFields type="shipping" handleSubmit={goToBilling} />
-        <AddressFields type="billing" handleSubmit={goToPayment} />
-        <PaymentForm />
+        {useSeparateBilling && (
+          <AddressFields type="billing" handleSubmit={goToPayment} />
+        )}
 
         <button type="submit" disabled={loading}>
-          Pay
+          Checkout
         </button>
       </form>
     </FormContext>

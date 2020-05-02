@@ -9,7 +9,7 @@ import CartProvider from "./src/components/CartProvider"
 import Layout from "./src/components/Layout"
 
 const client = new ApolloClient({
-  uri: 'https://api.cartql.com/graphql',
+  uri: "https://api.cartql.com",
 })
 
 export const wrapRootElement = ({ element }) => (

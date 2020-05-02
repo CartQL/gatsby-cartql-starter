@@ -1,7 +1,7 @@
 import React from "react"
 import { useFormContext } from "react-hook-form"
 
-const AddressFields = ({ type, handleSubmit }) => {
+const AddressFields = ({ type }) => {
   const { errors, register } = useFormContext()
 
   const isShipping = type === "shipping"
@@ -76,24 +76,23 @@ const AddressFields = ({ type, handleSubmit }) => {
       </div>
 
       {isShipping && (
-        <div>
-          <label htmlFor="useSeparateBilling">
-            <input
-              type="checkbox"
-              id="useSeparateBilling"
-              name="useSeparateBilling"
-              ref={register}
-            />{" "}
-            Use different billing address
-          </label>
-        </div>
+        <React.Fragment>
+          <div>
+            <textarea name="notes" ref={register} placeholder="Notes" />
+          </div>
+          <div>
+            <label htmlFor="useSeparateBilling">
+              <input
+                type="checkbox"
+                id="useSeparateBilling"
+                name="useSeparateBilling"
+                ref={register}
+              />{" "}
+              Use different billing address
+            </label>
+          </div>
+        </React.Fragment>
       )}
-
-      <div>
-        <button type="button" onClick={handleSubmit}>
-          Continue &rarr;
-        </button>
-      </div>
     </fieldset>
   )
 }
