@@ -2,6 +2,7 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.0.0-beta.48",
+    "@apollo/link-context": "^2.0.0-beta.3",
     "cuid": "2.1.8",
     "gatsby": "2.18.12",
     "gatsby-image": "2.2.39",

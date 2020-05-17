@@ -48,7 +48,7 @@ const defaultValues = {
   billing: {},
 }
 
-function CheckoutPage() {
+const CheckoutPage = () => {
   const cartId = useCartId()
   const { handleSubmit, ...methods } = useForm({ defaultValues })
   const { watch, setValue } = methods

@@ -12,14 +12,14 @@ const useLocalStorage = (key, initialValue) => {
     }
   })
 
-  const setValue = value => {
+  const setValue = (value) => {
     try {
       const valueToStore =
         value instanceof Function ? value(storedValue) : value
 
-      setStoredValue(valueToStore)
+      valueToStore && setStoredValue(valueToStore)
 
-      window.localStorage.setItem(key, valueToStore)
+      valueToStore && window.localStorage.setItem(key, valueToStore)
     } catch (error) {
       console.log(error)
     }
