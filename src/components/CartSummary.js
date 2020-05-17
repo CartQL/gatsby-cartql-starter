@@ -2,30 +2,15 @@ import React from "react"
 import { Link } from "gatsby"
 import { gql, useQuery } from "@apollo/client"
 
+import { cartWithItems } from "../lib/fragments"
+
 const GET_CART_QUERY = gql`
   query getCart($id: ID!) {
     cart(id: $id) {
-      id
-      isEmpty
-      totalUniqueItems
-      subTotal {
-        formatted
-      }
-      items {
-        id
-        name
-        description
-        images
-        quantity
-        unitTotal {
-          formatted
-        }
-        lineTotal {
-          formatted
-        }
-      }
+      ...cartWithItems
     }
   }
+  ${cartWithItems}
 `
 
 const CartSummary = ({ cartId: id }) => {

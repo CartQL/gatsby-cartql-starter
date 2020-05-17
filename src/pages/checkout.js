@@ -6,6 +6,8 @@ import useCartId from "../hooks/useCartId"
 import AddressFields from "../components/AddressFields"
 import PaymentForm from "../components/PaymentForm"
 
+import { cartWithItems } from "../lib/fragments"
+
 const CHECKOUT_MUTATION = gql`
   mutation checkout($input: CheckoutInput!) {
     checkout(input: $input) {
@@ -18,27 +20,10 @@ const CHECKOUT_MUTATION = gql`
 const EMPTY_CART_MUTATION = gql`
   mutation emptyCart($input: EmptyCartInput!) {
     emptyCart(input: $input) {
-      id
-      isEmpty
-      totalUniqueItems
-      subTotal {
-        formatted
-      }
-      items {
-        id
-        name
-        description
-        images
-        quantity
-        unitTotal {
-          formatted
-        }
-        lineTotal {
-          formatted
-        }
-      }
+      ...cartWithItems
     }
   }
+  ${cartWithItems}
 `
 
 const defaultValues = {

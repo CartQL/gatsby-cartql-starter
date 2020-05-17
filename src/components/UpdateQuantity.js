@@ -1,30 +1,15 @@
 import React from "react"
 import { gql, useMutation } from "@apollo/client"
 
+import { cartWithItems } from "../lib/fragments"
+
 const UPDATE_ITEM_MUTATION = gql`
   mutation updateQuantity($input: UpdateCartItemInput!) {
     updateItem(input: $input) {
-      id
-      isEmpty
-      totalUniqueItems
-      subTotal {
-        formatted
-      }
-      items {
-        id
-        name
-        description
-        images
-        quantity
-        unitTotal {
-          formatted
-        }
-        lineTotal {
-          formatted
-        }
-      }
+      ...cartWithItems
     }
   }
+  ${cartWithItems}
 `
 
 const options = new Array(10).fill(0).map((v, k) => k + 1)

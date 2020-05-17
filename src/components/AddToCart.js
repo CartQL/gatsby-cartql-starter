@@ -1,30 +1,15 @@
 import React from "react"
 import { gql, useMutation } from "@apollo/client"
 
+import { cartWithItems } from "../lib/fragments"
+
 const ADD_ITEM_MUTATION = gql`
   mutation addToCart($input: AddToCartInput!) {
     addItem(input: $input) {
-      id
-      isEmpty
-      totalUniqueItems
-      subTotal {
-        formatted
-      }
-      items {
-        id
-        name
-        description
-        images
-        quantity
-        unitTotal {
-          formatted
-        }
-        lineTotal {
-          formatted
-        }
-      }
+      ...cartWithItems
     }
   }
+  ${cartWithItems}
 `
 
 const AddToCart = (input) => {

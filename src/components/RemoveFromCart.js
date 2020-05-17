@@ -1,30 +1,15 @@
 import React from "react"
 import { gql, useMutation } from "@apollo/client"
 
+import { cartWithItems } from "../lib/fragments"
+
 const REMOVE_ITEM_MUTATION = gql`
   mutation removeFromCart($input: RemoveCartItemInput!) {
     removeItem(input: $input) {
-      id
-      isEmpty
-      totalUniqueItems
-      subTotal {
-        formatted
-      }
-      items {
-        id
-        name
-        description
-        images
-        quantity
-        unitTotal {
-          formatted
-        }
-        lineTotal {
-          formatted
-        }
-      }
+      ...cartWithItems
     }
   }
+  ${cartWithItems}
 `
 
 const RemoveFromCart = (input) => {
