@@ -1,3 +1,5 @@
+import fetch from "isomorphic-unfetch"
+
 import React from "react"
 import ApolloClient from "apollo-boost"
 import { ApolloProvider } from "@apollo/react-hooks"
@@ -8,6 +10,7 @@ import Layout from "./src/components/Layout"
 
 const client = new ApolloClient({
   uri: "https://api.cartql.com",
+  fetch,
 })
 
 export const wrapRootElement = ({ element }) => (
