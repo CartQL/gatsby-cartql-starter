@@ -1,6 +1,5 @@
 import React from "react"
-import { gql } from "apollo-boost"
-import { useMutation } from "@apollo/react-hooks"
+import { gql, useMutation } from "@apollo/client"
 
 const UPDATE_ITEM_MUTATION = gql`
   mutation updateQuantity($input: UpdateCartItemInput!) {
@@ -46,7 +45,7 @@ const UpdateQuantity = ({ initialValue, ...props }) => {
       disabled={loading}
     >
       <option value={0}>0</option>
-      {options.map(o => (
+      {options.map((o) => (
         <option key={o} value={o}>
           {o}
         </option>

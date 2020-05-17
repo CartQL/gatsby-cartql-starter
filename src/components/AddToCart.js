@@ -1,6 +1,5 @@
 import React from "react"
-import { gql } from "apollo-boost"
-import { useMutation } from "@apollo/react-hooks"
+import { gql, useMutation } from "@apollo/client"
 
 const ADD_ITEM_MUTATION = gql`
   mutation addToCart($input: AddToCartInput!) {
@@ -28,7 +27,7 @@ const ADD_ITEM_MUTATION = gql`
   }
 `
 
-const AddToCart = input => {
+const AddToCart = (input) => {
   const [addItem, { loading }] = useMutation(ADD_ITEM_MUTATION, {
     variables: {
       input,

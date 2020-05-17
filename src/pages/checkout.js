@@ -1,6 +1,5 @@
 import React from "react"
-import { gql } from "apollo-boost"
-import { useMutation } from "@apollo/react-hooks"
+import { gql, useMutation } from "@apollo/client"
 import { useForm, FormContext } from "react-hook-form"
 
 import useCartId from "../hooks/useCartId"
