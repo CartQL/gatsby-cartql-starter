@@ -1,5 +1,3 @@
-import "isomorphic-fetch"
-
 import React from "react"
 import ApolloClient from "apollo-boost"
 import { ApolloProvider } from "@apollo/react-hooks"
