@@ -1,7 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-import { gql } from "apollo-boost"
-import { useQuery } from "@apollo/react-hooks"
+import { gql, useQuery } from "@apollo/client"
 
 const GET_CART_QUERY = gql`
   query getCart($id: ID!) {

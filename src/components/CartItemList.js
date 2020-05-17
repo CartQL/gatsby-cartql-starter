@@ -1,6 +1,5 @@
 import React from "react"
-import { gql } from "apollo-boost"
-import { useQuery } from "@apollo/react-hooks"
+import { gql, useQuery } from "@apollo/client"
 
 import useCartId from "../hooks/useCartId"
 import CartItem from "./CartItem"
@@ -46,7 +45,7 @@ const CartItemList = ({ cartId: id }) => {
 
   return (
     <div>
-      {data.cart.items.map(item => (
+      {data.cart.items.map((item) => (
         <CartItem key={item.id} cartId={cartId} {...item} />
       ))}
 

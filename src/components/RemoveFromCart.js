@@ -1,6 +1,5 @@
 import React from "react"
-import { gql } from "apollo-boost"
-import { useMutation } from "@apollo/react-hooks"
+import { gql, useMutation } from "@apollo/client"
 
 const REMOVE_ITEM_MUTATION = gql`
   mutation removeFromCart($input: RemoveCartItemInput!) {
@@ -28,7 +27,7 @@ const REMOVE_ITEM_MUTATION = gql`
   }
 `
 
-const RemoveFromCart = input => {
+const RemoveFromCart = (input) => {
   const [removeItem, { loading }] = useMutation(REMOVE_ITEM_MUTATION, {
     variables: {
       input,
