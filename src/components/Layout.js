@@ -9,19 +9,23 @@ const Layout = ({ children }) => {
 
   return (
     <React.Fragment>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/login">Login</Link>
-        </li>
-        <li>
-          <CartSummary cartId={cartId} />
-        </li>
-      </ul>
+      <header className="bg-white py-3 shadow-sm">
+        <div className="max-w-5xl mx-auto px-6">
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <CartSummary cartId={cartId} />
+            </li>
+          </ul>
+        </div>
+      </header>
 
-      <main>{children}</main>
+      <main className="max-w-5xl mx-auto px-6 py-12">{children}</main>
     </React.Fragment>
   )
 }

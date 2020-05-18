@@ -24,11 +24,22 @@ const RegisterForm = () => {
     },
   })
 
-  const onSubmit = async ({ name, username, password }) => {
+  const onSubmit = async ({ name, username, password, acceptsMarketing }) => {
     try {
       const {
         data: { createCustomer: customer },
-      } = await signup({ variables: { input: { name, username, password } } })
+      } = await signup({
+        variables: {
+          input: {
+            name,
+            username,
+            password,
+            attributes: [
+              { key: "acceptsMarketing", value: String(acceptsMarketing) },
+            ],
+          },
+        },
+      })
 
       console.log(customer)
     } catch (err) {
@@ -59,6 +70,18 @@ const RegisterForm = () => {
           placeholder="Password"
         />
         {errors && errors.password && "Password is required."}
+      </div>
+
+      <div>
+        <label htmlFor="acceptsMarketing">
+          <input
+            id="acceptsMarketing"
+            name="acceptsMarketing"
+            ref={register}
+            type="checkbox"
+          />
+          Accepts marketing
+        </label>
       </div>
 
       <div>

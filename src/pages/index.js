@@ -16,6 +16,9 @@ export const pageQuery = graphql`
         id
         name
         slug
+        variants {
+          formattedPrice
+        }
         image {
           childImageSharp {
             fluid(maxWidth: 560) {

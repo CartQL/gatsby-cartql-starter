@@ -1,0 +1,14 @@
+@tailwind base;
+
+html,
+body,
+#___gatsby {
+  @apply h-full;
+}
+
+html {
+  @apply bg-white font-sans leading-normal antialiased;
+}
+
+@tailwind components;
+@tailwind utilities;
