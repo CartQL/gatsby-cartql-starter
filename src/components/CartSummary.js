@@ -40,7 +40,7 @@ const CartSummary = ({ cartId: id }) => {
 
   return (
     <Link to="/cart">
-      {data.cart.totalUniqueItems} ({data.cart.subTotal.formatted})
+      Cart {data.cart.totalUniqueItems} ({data.cart.subTotal.formatted})
     </Link>
   )
 }
