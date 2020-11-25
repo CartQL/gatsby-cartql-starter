@@ -15,7 +15,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
     fetch,
-    uri: "https://api.cartql.com",
+    uri: process.env.GATSBY_GRAPHQL_ENDPOINT,
   }),
 })
 

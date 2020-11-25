@@ -11,7 +11,7 @@ const ProductPage = ({ data: { product } }) => {
   const [firstVariant] = variants
   const [activeVariantId, setActiveVariantId] = useState(firstVariant.id)
   const hasVariants = variants.length > 1
-  const activeVariant = variants.find(v => v.id === activeVariantId)
+  const activeVariant = variants.find((v) => v.id === activeVariantId)
 
   return (
     <React.Fragment>
@@ -38,7 +38,7 @@ const ProductPage = ({ data: { product } }) => {
             value={activeVariantId}
             onChange={({ target: { value } }) => setActiveVariantId(value)}
           >
-            {variants.map(variant => (
+            {variants.map((variant) => (
               <option key={variant.id} value={variant.id}>
                 {variant.name}
               </option>
@@ -52,7 +52,7 @@ const ProductPage = ({ data: { product } }) => {
         id={activeVariant.id}
         name={name}
         price={activeVariant.price}
-        description={activeVariant.description}
+        description={activeVariant.name}
         images={[JSON.stringify(activeVariant.image)]}
       />
     </React.Fragment>
