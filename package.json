@@ -4,7 +4,7 @@
     "@apollo/client": "^3.2.9",
     "@stripe/stripe-js": "^1.11.0",
     "cuid": "2.1.8",
-    "gatsby": "2.27.3",
+    "gatsby": "4.25.7",
     "gatsby-image": "2.6.0",
     "gatsby-plugin-manifest": "2.7.0",
     "gatsby-plugin-react-helmet": "3.5.0",
